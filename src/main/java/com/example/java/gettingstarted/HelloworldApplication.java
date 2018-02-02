@@ -16,9 +16,18 @@
 
 package com.example.java.gettingstarted;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.core.io.ClassPathResource;
+import ru.borisdev.service.SongTranslator;
+
+import java.io.File;
+import java.io.IOException;
+
 public class HelloworldApplication {
 
-    public static void main(String[] args) {
-        System.out.println("SLDKFJLSDFKJ");
+    public static void main(String[] args) throws IOException {
+        File sampleJson = new ClassPathResource("sample.json").getFile();
+        String enrichedJson = new SongTranslator(FileUtils.readFileToString(sampleJson)).translate();
+        System.out.println(enrichedJson);
     }
 }
