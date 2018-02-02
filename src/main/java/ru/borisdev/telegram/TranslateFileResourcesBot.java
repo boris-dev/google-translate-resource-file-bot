@@ -1,13 +1,12 @@
 package ru.borisdev.telegram;
 
-import com.google.cloud.translate.Translate;
-import com.google.cloud.translate.TranslateOptions;
-import com.google.cloud.translate.Translation;
+import org.apache.commons.io.IOUtils;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import ru.borisdev.service.SongTranslator;
 
 public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     @Override
@@ -21,24 +20,13 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         }
         if (update.hasMessage() && update.getMessage().hasText()) {
             try {
-//                SongTranslator songTranslator = new SongTranslator(IOUtils.toString(Thread.currentThread().getContextClassLoader().getResourceAsStream("sample.json")));
-//                String translate = songTranslator.translate();
+                SongTranslator songTranslator = new SongTranslator(IOUtils.toString(Thread.currentThread().getContextClassLoader().getResourceAsStream("sample.json")));
+                String translate = songTranslator.translate();
 
-                Translate translate = TranslateOptions.getDefaultInstance().getService();
-
-                // The text to translate
-                String text = "Hello, world!";
-
-                // Translates some text into Russian
-                Translation translation =
-                        translate.translate(
-                                text,
-                                Translate.TranslateOption.sourceLanguage("en"),
-                                Translate.TranslateOption.targetLanguage("ru"));
 
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
-                        .setText(translation.getTranslatedText());
+                        .setText(translate.substring(0, 500));
 
                 sendNoException(message);
             } catch (Exception e) {

@@ -1,7 +1,7 @@
 package ru.liga.domain
 
-data class TextByLang(val ru: Ru?,
-                      val en: En?,
+data class TextByLang(val ru: Ru,
+                      val en: En,
                       var es: Es? = null,
                       var fr: Fr? = null,
                       var de: De? = null,
