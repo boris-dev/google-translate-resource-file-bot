@@ -3,13 +3,11 @@ package ru.borisdev.telegram;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
-import org.apache.commons.io.IOUtils;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import ru.borisdev.service.SongTranslator;
 
 public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     @Override
