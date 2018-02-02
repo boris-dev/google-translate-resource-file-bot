@@ -16,10 +16,7 @@
 
 package com.example.java.gettingstarted;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 public class HelloworldApplication {
@@ -40,7 +37,8 @@ public class HelloworldApplication {
 //    return "Still surviving.";
 //  }
 
-  public static void main(String[] args) {
-    while (true);
-  }
+    public static void main(String[] args) {
+        System.out.println("SLDKFJLSDFKJ");
+        while (true) ;
+    }
 }
