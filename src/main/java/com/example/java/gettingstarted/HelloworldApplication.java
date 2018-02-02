@@ -16,26 +16,7 @@
 
 package com.example.java.gettingstarted;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class HelloworldApplication {
-//  @RequestMapping("/")
-//  public String home() {
-//    return "I'm future bot1!";
-//  }
-//
-//  /**
-//   * (Optional) App Engine health check endpoint mapping.
-//   * @see <a href="https://cloud.google.com/appengine/docs/flexible/java/how-instances-are-managed#health_checking"></a>
-//   * If your app does not handle health checks, a HTTP 404 response is interpreted
-//   *     as a successful reply.
-//   */
-//  @RequestMapping("/_ah/health")
-//  public String healthy() {
-//    // Message body required though ignored
-//    return "Still surviving.";
-//  }
 
     public static void main(String[] args) {
         System.out.println("SLDKFJLSDFKJ");
