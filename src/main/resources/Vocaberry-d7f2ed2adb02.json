@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "vocaberry-ad25a",
+  "private_key_id": "d7f2ed2adb025957c308e7e26c67ff9ab59e39d9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDLXwFdUmP2qSmM\nekRTwPq3lEi0/8aKuzP7Uk+xhK+5aI++cfHW3sQycBQ4EcLOYZcDd4CREVLFrcuP\nh3r7fWKhSr4r46tC7+EBmdYb7T8XHpYxTdiR6g1vFfuUgiQjdbi7B5AOuQGnpQ2I\nL7WjbaIloieBXwyrMwLZ8LLWsBJdqEind3SRz7m7FpXetQaGPe9AUQ8EngREMf8q\nurRnKCq0DdT2UdqZscQO11MHnVnLvLQnz3pmK44oapUSjFrHr5XtwEW8lwFoKgVP\n3lFgYo6xvRuHgixDnb2ZC88uzKgNHV38wuNQll38kvLSTN6wiMK+qRUFJNzrRqZv\nqKIz81CvAgMBAAECggEAK26CsBdkWc0Onn2OEgTohkQYsu7cy8vm8glGE7cuf/4g\nlJ9o8mZoqAzfhInmfITC526h+lkkwCq5ilF4pjTE14VKz7yzWnw4JUthOl2UV6+k\ni6sAUUkWzV54d+LDLP97EBYxYbOI8vCAz1DBDcHgGwFiRnKyFe2y8jBBQTAg+/cO\nzLgMAFz3YR9nLiDD4Z5Ac5Zol4JfntTIYWMBd3tqnHJ8jNXHZHrodDP1SiwAowUC\nma0XS/cIZ4dKUrCbQMPOWqqVAJh8MDSq4bgnDmgAVZCkGcJIICRvsPCUaKyPYMy1\nK7HG4jpeEgrCx167Br8h8OiBhnV3Wnd+a7c+XiWsgQKBgQDx+hDfTSiDL19g4xuK\nqQX6aHayOO9ixUg7WkcPfGHVs+bd+GpSbPdYlGsypnMiE5WG4uaCNLS+ZYjUBUm6\nvF2H8FnLSepbtxDC/VhkCfBJNrHpPDrs+5IvMSPwT466AsSMEQ7YEiBw8YQSAlDi\nbXNlX6+iR+Cpn6nIgroFMHj//wKBgQDXKDDLZuBJF1WZ2P58eqDDIZ92XizH9TYp\ni52pQuvA621Bxw/qBsmMMtxVF3ciclMeXig9BWB9Z7mzHU19tJDFqKjYChifYxcn\nbXcPiBGSa5adukwdXL1+W5v5oIXZT2l3Hfxty6TRhrCOGTGSEwxtGbd7ryoMOiXQ\nL2hR2VWvUQKBgQDYZ479VbD8mbpQGOwBtyYMi65Tt42HpO3zfsp8c/2/NFQtgcP8\nkU0oYBv6wVfISwF4D6adHevjN0UGcPA+W8W+FFsJ7sH0YiVQbWjGlwjZQVwdPetp\nE5fqMqV0foIjouQKbBr9bECtIaG+xWl3BvGj4M5fcK7gpFUgaKFakL42GwKBgQDT\n3uft5GiIkUniLiSsP7V/ceStkx9V6MplLu8adqPhXfRBCd1J/1UJkiwWPv06Fopz\nJRVKwbi6xSHAl+JvHxhRDDz4QTjt+44ZbVoJGVz0aq3utD2vzFttyphVwRUNYX3h\nps2k8Rxkl9XUmEqQJeHeraxZR6yITdpen9CCiRovgQKBgBlE0YdcWP10ZIFK5mUB\nFSPBfS+ZarccfK9swvsA0cg1Mbr+OgdM8CEyLOEu15NrY5nwjTPDS9T1b2o1QWnk\nk6qZxyEwZsJM9pL+X/1yg5++VBLWmpmRbdmmyrwvglVw4SnyKyv+J6Tt1hK4Z70n\nODikaujn+cKKqGKAA6K6+oKa\n-----END PRIVATE KEY-----\n",
+  "client_email": "starting-account-h6d97c3kxts5@vocaberry-ad25a.iam.gserviceaccount.com",
+  "client_id": "106978780711781555440",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/starting-account-h6d97c3kxts5%40vocaberry-ad25a.iam.gserviceaccount.com"
+}
