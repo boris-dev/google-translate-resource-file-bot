@@ -5,6 +5,7 @@ import com.google.cloud.translate.Translate
 import com.google.cloud.translate.TranslateOptions
 import ru.liga.domain.Ar
 import ru.liga.domain.De
+import ru.liga.domain.Es
 import ru.liga.domain.Song
 
 
@@ -17,9 +18,9 @@ class SongTranslator(val sourceJson: String) {
         for (lesson in song.lessons) {
             for (exercise in lesson.exercises) {
                 var textByLang = exercise.textByLang
-                textByLang.de = De(trans(textByLang.en.name, "de"), trans(textByLang.en.description, "de"))
-                textByLang.ar = Ar("ARAB", "DESCR")
-
+                textByLang.de = De(trans(textByLang.en.name, "de"), textByLang.en.midiText, trans(textByLang.en.description, "de"))
+                textByLang.ar = Ar(trans(textByLang.en.name, "ar"), textByLang.en.midiText, trans(textByLang.en.description, "ar"))
+                textByLang.es = Es(trans(textByLang.en.name, "es"), textByLang.en.midiText, trans(textByLang.en.description, "es"))
             }
         }
         return klaxon.toJsonString(song)

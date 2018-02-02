@@ -29,7 +29,7 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
                         .setText(translate.substring(0, 500));
 
                 sendNoException(message);
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
                         .setText(e.toString());
