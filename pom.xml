@@ -18,7 +18,25 @@
         <kotlin.version>1.2.21</kotlin.version>
     </properties>
 
+    <repositories>
 
+        <repository>
+            <id>central</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>clojars</id>
+            <url>https://clojars.org/repo/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
