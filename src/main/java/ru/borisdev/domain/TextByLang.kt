@@ -1,16 +1,41 @@
 package ru.liga.domain
 
-data class TextByLang(val ru: Ru,
-                      val en: En,
-                      var es: Es? = null,
-                      var fr: Fr? = null,
-                      var de: De? = null,
-                      var pt: Pt? = null,
-                      var pl: Pl? = null,
-                      var ar: Ar? = null,
-                      var ko: Ko? = null,
-                      var ja: Ja? = null,
-                      var tr: Tr? = null,
-                      var it: It? = null
+import com.beust.klaxon.Converter
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.JsonValue
 
+
+data class TextByLang(
+        val langToLangInfo: MutableMap<String, LangInfo> = mutableMapOf()
 )
+
+
+class TextByLangConverter : Converter<TextByLang> {
+    override fun fromJson(jv: JsonValue): TextByLang {
+        val langMap = hashMapOf<String, LangInfo>()
+        val langs = jv.obj ?: throw IllegalArgumentException("TextByLang have no languages")
+        for (lang in langs) {
+            val jsonLangParams: JsonObject = lang.value as JsonObject
+            langMap[lang.key] = LangInfo(
+                    jsonLangParams.string("name") ?: "",
+                    jsonLangParams.string("description") ?: "",
+                    jsonLangParams.string("midiText") ?: "")
+        }
+        return TextByLang(langMap)
+    }
+
+    override fun toJson(value: TextByLang): String? {
+        val langMap = value.langToLangInfo
+        val jv = JsonObject()
+        for (lang in langMap) {
+            val langInfo = lang.value
+            jv.put(lang.key, hashMapOf(
+                    "name" to langInfo.name,
+                    "midiText" to langInfo.midiText,
+                    "description" to langInfo.description
+            ))
+        }
+        return jv.toJsonString()
+    }
+
+}
