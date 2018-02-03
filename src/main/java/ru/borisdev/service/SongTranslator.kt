@@ -13,12 +13,19 @@ class SongTranslator(val sourceJson: String) {
         val song = klaxon.converter(TextByLangConverter()).parse<Song>(sourceJson) ?: throw IllegalArgumentException("cannot parse source json: $sourceJson")
         for (lesson in song.lessons) {
             for (exercise in lesson.exercises) {
-                var textByLang = exercise.textByLang
+                val textByLang = exercise.textByLang
                 val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
                 textByLang.langToLangInfo["de"] = LangInfo(trans(en.name, "de"), en.midiText, trans(en.description, "de"))
                 textByLang.langToLangInfo["ar"] = LangInfo(trans(en.name, "ar"), en.midiText, trans(en.description, "ar"))
                 textByLang.langToLangInfo["es"] = LangInfo(trans(en.name, "es"), en.midiText, trans(en.description, "es"))
-            }
+                textByLang.langToLangInfo["fr"] = LangInfo(trans(en.name, "fr"), en.midiText, trans(en.description, "fr"))
+                textByLang.langToLangInfo["pt"] = LangInfo(trans(en.name, "pt"), en.midiText, trans(en.description, "pt"))
+                textByLang.langToLangInfo["pl"] = LangInfo(trans(en.name, "pl"), en.midiText, trans(en.description, "pl"))
+                textByLang.langToLangInfo["it"] = LangInfo(trans(en.name, "it"), en.midiText, trans(en.description, "it"))
+                textByLang.langToLangInfo["ko"] = LangInfo(trans(en.name, "ko"), en.midiText, trans(en.description, "ko"))
+                textByLang.langToLangInfo["ja"] = LangInfo(trans(en.name, "ja"), en.midiText, trans(en.description, "ja"))
+                textByLang.langToLangInfo["tr"] = LangInfo(trans(en.name, "tr"), en.midiText, trans(en.description, "tr"))
+        }
         }
         return klaxon.toJsonString(song)
     }
