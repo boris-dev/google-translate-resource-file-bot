@@ -18,8 +18,9 @@ class TextByLangConverter : Converter<TextByLang> {
             val jsonLangParams: JsonObject = lang.value as JsonObject
             langMap[lang.key] = LangInfo(
                     jsonLangParams.string("name") ?: "",
-                    jsonLangParams.string("description") ?: "",
-                    jsonLangParams.string("midiText") ?: "")
+                    jsonLangParams.string("midiText") ?: "",
+                    jsonLangParams.string("description") ?: ""
+            )
         }
         return TextByLang(langMap)
     }

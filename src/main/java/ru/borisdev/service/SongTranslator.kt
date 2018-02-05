@@ -19,7 +19,7 @@ class SongTranslator(val sourceJson: String) {
                 val textByLang = exercise.textByLang
                 val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
 
-                for (langCode in Arrays.asList("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr")) {
+                for (langCode in arrayOf("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr")) {
                     textByLang.langToLangInfo[langCode] = LangInfo(name = trans(en.name, langCode), description = trans(en.description, langCode))
                 }
 
