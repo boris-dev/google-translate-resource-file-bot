@@ -20,18 +20,20 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasDocument()) {
             Document document = update.getMessage().getDocument();
+
             GetFile getFile = new GetFile();
             getFile.setFileId(document.getFileId());
 
             try {
                 File execute = execute(getFile);
+
                 java.io.File file = downloadFile(execute);
                 SongTranslator songTranslator = new SongTranslator(IOUtils.toString(new FileReader(file)));
                 String translate = songTranslator.translate();
                 SendDocument sendDocument = new SendDocument()
                         .setChatId(update.getMessage().getChatId())
-                        .setCaption("with translations")
-                        .setNewDocument("", IOUtils.toInputStream(translate));
+                        .setCaption(document.getFileName() + " with translations")
+                        .setNewDocument(document.getFileName(), IOUtils.toInputStream(translate));
 
                 sendNoException(sendDocument);
 
