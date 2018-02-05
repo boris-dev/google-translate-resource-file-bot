@@ -2,21 +2,45 @@ package ru.borisdev.telegram;
 
 import org.apache.commons.io.IOUtils;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
+import org.telegram.telegrambots.api.methods.GetFile;
+import org.telegram.telegrambots.api.methods.PartialBotApiMethod;
+import org.telegram.telegrambots.api.methods.send.SendDocument;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Document;
+import org.telegram.telegrambots.api.objects.File;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import ru.borisdev.service.SongTranslator;
 
+import java.io.FileReader;
+
 public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasDocument()) {
-            SendMessage message = new SendMessage()
-                    .setChatId(update.getMessage().getChatId())
-                    .setText("FILE");
+            Document document = update.getMessage().getDocument();
+            GetFile getFile = new GetFile();
+            getFile.setFileId(document.getFileId());
 
-            sendNoException(message);
+            try {
+                File execute = execute(getFile);
+                java.io.File file = downloadFile(execute);
+                SongTranslator songTranslator = new SongTranslator(IOUtils.toString(new FileReader(file)));
+                String translate = songTranslator.translate();
+                SendDocument sendDocument = new SendDocument()
+                        .setChatId(update.getMessage().getChatId())
+                        .setCaption("with translations")
+                        .setNewDocument("", IOUtils.toInputStream(translate));
+
+                sendNoException(sendDocument);
+
+            } catch (Throwable e) {
+                SendMessage message = new SendMessage()
+                        .setChatId(update.getMessage().getChatId())
+                        .setText(e.toString());
+                sendNoException(message);
+            }
         }
         if (update.hasMessage() && update.getMessage().hasText()) {
             try {
@@ -45,7 +69,14 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+    }
 
+    private void sendNoException(PartialBotApiMethod message) {
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

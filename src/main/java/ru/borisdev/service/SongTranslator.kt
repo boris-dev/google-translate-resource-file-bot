@@ -3,7 +3,10 @@ package ru.borisdev.service
 import com.beust.klaxon.Klaxon
 import com.google.cloud.translate.Translate
 import com.google.cloud.translate.TranslateOptions
-import ru.liga.domain.*
+import ru.liga.domain.LangInfo
+import ru.liga.domain.Song
+import ru.liga.domain.TextByLangConverter
+import java.util.*
 
 
 class SongTranslator(val sourceJson: String) {
@@ -15,17 +18,12 @@ class SongTranslator(val sourceJson: String) {
             for (exercise in lesson.exercises) {
                 val textByLang = exercise.textByLang
                 val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
-                textByLang.langToLangInfo["de"] = LangInfo(trans(en.name, "de"), en.midiText, trans(en.description, "de"))
-                textByLang.langToLangInfo["ar"] = LangInfo(trans(en.name, "ar"), en.midiText, trans(en.description, "ar"))
-                textByLang.langToLangInfo["es"] = LangInfo(trans(en.name, "es"), en.midiText, trans(en.description, "es"))
-                textByLang.langToLangInfo["fr"] = LangInfo(trans(en.name, "fr"), en.midiText, trans(en.description, "fr"))
-                textByLang.langToLangInfo["pt"] = LangInfo(trans(en.name, "pt"), en.midiText, trans(en.description, "pt"))
-                textByLang.langToLangInfo["pl"] = LangInfo(trans(en.name, "pl"), en.midiText, trans(en.description, "pl"))
-                textByLang.langToLangInfo["it"] = LangInfo(trans(en.name, "it"), en.midiText, trans(en.description, "it"))
-                textByLang.langToLangInfo["ko"] = LangInfo(trans(en.name, "ko"), en.midiText, trans(en.description, "ko"))
-                textByLang.langToLangInfo["ja"] = LangInfo(trans(en.name, "ja"), en.midiText, trans(en.description, "ja"))
-                textByLang.langToLangInfo["tr"] = LangInfo(trans(en.name, "tr"), en.midiText, trans(en.description, "tr"))
-        }
+
+                for (langCode in Arrays.asList("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr")) {
+                    textByLang.langToLangInfo[langCode] = LangInfo(name = trans(en.name, langCode), description = trans(en.description, langCode))
+                }
+
+            }
         }
         return klaxon.toJsonString(song)
     }
