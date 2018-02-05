@@ -1,6 +1,7 @@
 package ru.borisdev.telegram;
 
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
 import org.telegram.telegrambots.api.methods.GetFile;
 import org.telegram.telegrambots.api.methods.send.SendDocument;
@@ -13,6 +14,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import ru.borisdev.service.SongTranslator;
 
 import java.io.FileReader;
+import java.io.InputStream;
 
 public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     @Override
@@ -25,17 +27,26 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
 
             try {
                 File execute = execute(getFile);
-
                 java.io.File file = downloadFile(execute);
-                SongTranslator songTranslator = new SongTranslator(IOUtils.toString(new FileReader(file)));
-                String translate = songTranslator.translate();
-                SendDocument sendDocument = new SendDocument()
-                        .setChatId(update.getMessage().getChatId())
-                        .setCaption(document.getFileName() + " with translations")
-                        .setNewDocument(document.getFileName(), IOUtils.toInputStream(translate));
-
-                sendNoException(sendDocument);
-
+                String content = IOUtils.toString(new FileReader(file));
+                InputStream outputFileInputStream = null;
+                if (document.getFileName().endsWith(".json")) {
+                    outputFileInputStream = translateVocaberryJson(content);
+                } else if (document.getFileName().toLowerCase().contains("string.xml")) {
+                    outputFileInputStream = translateAndroidStrings(content);
+                }
+                if (outputFileInputStream != null) {
+                    SendDocument sendDocument = new SendDocument()
+                            .setChatId(update.getMessage().getChatId())
+                            .setCaption(document.getFileName() + " with translations")
+                            .setNewDocument(document.getFileName(), outputFileInputStream);
+                    sendNoException(sendDocument);
+                } else {
+                    SendMessage message = new SendMessage()
+                            .setChatId(update.getMessage().getChatId())
+                            .setText(document.getFileName() + " is not supported");
+                    sendNoException(message);
+                }
             } catch (Throwable e) {
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
@@ -45,13 +56,10 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         }
         if (update.hasMessage() && update.getMessage().hasText()) {
             try {
-                SongTranslator songTranslator = new SongTranslator(IOUtils.toString(Thread.currentThread().getContextClassLoader().getResourceAsStream("sample.json")));
-                String translate = songTranslator.translate();
-
 
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
-                        .setText(translate.substring(0, 500));
+                        .setText("Service doesn't work with text, only .json files vocaberry format and android string.xml in English");
 
                 sendNoException(message);
             } catch (Throwable e) {
@@ -61,6 +69,17 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
                 sendNoException(message);
             }
         }
+    }
+
+    private InputStream translateAndroidStrings(String content) {
+        return null;
+    }
+
+    @NotNull
+    private InputStream translateVocaberryJson(String content) {
+        SongTranslator songTranslator = new SongTranslator(content);
+        String translate = songTranslator.translate();
+        return IOUtils.toInputStream(translate);
     }
 
 

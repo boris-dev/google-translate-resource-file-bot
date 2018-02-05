@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Vocaberry</string>
+    <string name="action_settings">Settings</string>
+    <string name="lesson">Lesson</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="network_error">Network Error\\nTry again later</string>
+    <string name="minutes_short">m</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="repeat">Repeat</string>
+    <string name="example">Example</string>
+    <string name="words">Words</string>
+    <string name="tone_accuracy">Tone</string>
+    <string name="tempo_accuracy">Tempo</string>
+    <string name="resume">Resume</string>
+    <string name="exit">Exit</string>
+    <string name="soprano">Soprano</string>
+    <string name="mezzo_soprano">Mezzo-soprano</string>
+    <string name="contralto">Contralto</string>
+    <string name="countertenor">Countertenor</string>
+    <string name="tenor">Tenor</string>
+    <string name="baritone">Baritone</string>
+    <string name="bass">Bass</string>
+    <string name="vocal_range">Vocal range</string>
+    <string name="start_sing">Start to sing</string>
+
+    <string name="dont_show_again">Don\'t show again</string>
+    <string name="rate_app">Rate the app</string>
+    <string name="later">Later</string>
+    <string name="rate">Rate</string>
+    <string name="suggest_song">Suggest a song</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_song_name">Enter artist and title</string>
+    <string name="name_is_too_short">Name is too short</string>
+    <string name="sent">Sent</string>
+    <string name="ok">Ok</string>
+    <string name="headset_description_warning">With the microphone connected, the application works as accurately as
+        possible
+    </string>
+    <string name="headset_description_title">Please connect the headset</string>
+    <string name="device_does_not_support_voice_processing">Unfortunately, your device does not support voice processing
+        of the required quality, or our application has not yet been optimized for its sound capture parameters. We will
+        receive this error report and try to fix this problem in one of the next versions
+    </string>
+    <string name="critical_error">Critical error</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="bravo">Bravo!</string>
+    <string name="app_id" translatable="false">ca-app-pub-6771093204089983/4817381213</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="seconds_short">s</string>
+    <string name="plugin_headphones_or_headset">Plug in headphones or headset</string>
+    <string name="not_record_playing_music">So the application does not record the playing music</string>
+    <string name="back">Back</string>
+    <string name="done">Done</string>
+    <string name="i_got_it">I got it</string>
+    <string name="define_the_lowest_note_of_your_voice">Define the lowest note of your voice</string>
+    <string name="press_play_and_we_will_show_how">Press play and we will show how</string>
+    <string name="try_to_repeat_find_a_low_but_steady_note">Try to repeat, find a low but steady note. When you are
+        ready, click \"Next\"
+    </string>
+    <string name="cannot_work_without_headset">Cannot work without headset or headphones</string>
+    <string name="press_record_button_and_try_to_hold_lowest_note">Press record button. Try to hold the lowest note
+    </string>
+    <string name="define_the_highest_note_of_your_voice">Define the highest note of your voice</string>
+    <string name="drag_the_handlers_to_comfortable_range_if_you_need">If you need you can drag the levers to comfortable
+        range
+    </string>
+    <string name="correct_manually">Correct manually</string>
+    <string name="recording">Recording</string>
+    <string name="press_record_button_and_try_to_hold_highest_note">Press record button. Try to hold the highest note
+    </string>
+    <string name="vocal_exercises">Vocal exercises</string>
+    <string name="each_exercise_consists_of_notes_that_are_played_in_turn">Each exercise consists of notes that are
+        played in turn
+    </string>
+    <string name="you_need_to_sing_the_sound_mmm">You need to sing the sound \"m-m-m-m\" and get into the note played by
+        the pitch. On the screen you will see a line of your voice, which should pass through the center of flying
+        notes.
+    </string>
+
+    <!-- Settings -->
+    <string name="application_version">Application version</string>
+    <string name="locale">Language</string>
+    <string name="get_pro_version">Get pro-version</string>
+    <string name="or">or</string>
+    <string name="watch_ads">Watch ads</string>
+    <string name="full_course_of_study_for_the_price_of_one_vocal_lesson">Full course of study for the price of one
+        vocal lesson
+    </string>
+    <string name="ad_loading">Please wait, the advertisement is loading…</string>
+    <string name="ad_failed_to_load">Unfortunately, at the moment it\'s impossible to download ads. Try later.</string>
+    <string name="thank_you_for_watching">Thank you for watching!</string>
+    <string name="purchase_thank">Thank you for your purchase!</string>
+    <string name="purchase_error">An error occurred while buying</string>
+</resources>
