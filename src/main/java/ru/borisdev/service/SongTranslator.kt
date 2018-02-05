@@ -6,7 +6,6 @@ import com.google.cloud.translate.TranslateOptions
 import ru.liga.domain.LangInfo
 import ru.liga.domain.Song
 import ru.liga.domain.TextByLangConverter
-import java.util.*
 
 
 class SongTranslator(val sourceJson: String) {
@@ -19,7 +18,7 @@ class SongTranslator(val sourceJson: String) {
                 val textByLang = exercise.textByLang
                 val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
 
-                for (langCode in arrayOf("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr")) {
+                for (langCode in arrayOf("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh")) {
                     textByLang.langToLangInfo[langCode] = LangInfo(name = trans(en.name, langCode), description = trans(en.description, langCode))
                 }
 
