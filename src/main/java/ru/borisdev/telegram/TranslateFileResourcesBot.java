@@ -3,7 +3,6 @@ package ru.borisdev.telegram;
 import org.apache.commons.io.IOUtils;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
 import org.telegram.telegrambots.api.methods.GetFile;
-import org.telegram.telegrambots.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.api.methods.send.SendDocument;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Document;
@@ -73,9 +72,9 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendNoException(PartialBotApiMethod message) {
+    private void sendNoException(SendDocument message) {
         try {
-            execute(message);
+            sendDocument(message);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
