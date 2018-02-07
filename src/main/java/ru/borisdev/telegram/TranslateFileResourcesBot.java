@@ -1,5 +1,7 @@
 package ru.borisdev.telegram;
 
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
@@ -11,10 +13,16 @@ import org.telegram.telegrambots.api.objects.File;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import ru.borisdev.domain.androidstring.StringFile;
+import ru.borisdev.service.AndroidStringTranslation;
 import ru.borisdev.service.SongTranslator;
+import ru.borisdev.service.ZipFiles;
 
 import java.io.FileReader;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     @Override
@@ -72,7 +80,15 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
     }
 
     private InputStream translateAndroidStrings(String content) {
-        return null;
+        List<StringFile> stringFiles = new ArrayList<>();
+        Translate service = TranslateOptions.getDefaultInstance().getService();
+
+        for (String langCode : Arrays.asList("de"
+//                ,"ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh"
+        )) {
+            stringFiles.add(new AndroidStringTranslation(content, langCode, service).traslateContentFromEnglishToLanguage());
+        }
+        return new ZipFiles(stringFiles).zip();
     }
 
     @NotNull
@@ -81,7 +97,6 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         String translate = songTranslator.translate();
         return IOUtils.toInputStream(translate);
     }
-
 
     private void sendNoException(BotApiMethod message) {
         try {
