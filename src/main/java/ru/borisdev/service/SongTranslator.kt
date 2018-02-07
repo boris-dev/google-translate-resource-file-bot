@@ -14,14 +14,16 @@ class SongTranslator(val sourceJson: String) {
     fun translate(): String {
         val song = klaxon.converter(TextByLangConverter()).parse<Song>(sourceJson) ?: throw IllegalArgumentException("cannot parse source json: $sourceJson")
         for (lesson in song.lessons) {
-            for (exercise in lesson.exercises) {
-                val textByLang = exercise.textByLang
-                val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
+            if (lesson.exercises != null) {
+                for (exercise in lesson.exercises) {
+                    val textByLang = exercise.textByLang
+                    val en = textByLang.langToLangInfo["en"] ?: throw IllegalArgumentException("There is no EN for translate")
 
-                for (langCode in arrayOf("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh")) {
-                    textByLang.langToLangInfo[langCode] = LangInfo(name = trans(en.name, langCode), description = trans(en.description, langCode))
+                    for (langCode in arrayOf("de", "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh")) {
+                        textByLang.langToLangInfo[langCode] = LangInfo(name = trans(en.name, langCode), description = trans(en.description, langCode))
+                    }
+
                 }
-
             }
         }
         return klaxon.toJsonString(song)
