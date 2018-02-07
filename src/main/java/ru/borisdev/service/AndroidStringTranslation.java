@@ -27,7 +27,7 @@ public class AndroidStringTranslation {
             }
         }
 
-        return new StringFile("values-" + lang, result.toString());
+        return new StringFile("values-" + lang + ".xml", result.toString());
     }
 
 }

@@ -89,7 +89,7 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
         Translate service = TranslateOptions.getDefaultInstance().getService();
 
         for (String langCode : Arrays.asList("de"
-//                ,"ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh"
+                , "ar", "es", "fr", "pt", "pl", "it", "ko", "ja", "tr", "zh"
         )) {
             stringFiles.add(new AndroidStringTranslation(content, langCode, service).traslateContentFromEnglishToLanguage());
         }
