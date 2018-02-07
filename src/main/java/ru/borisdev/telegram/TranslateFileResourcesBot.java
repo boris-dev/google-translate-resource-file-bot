@@ -40,16 +40,21 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
                 InputStream outputFileInputStream = null;
                 if (document.getFileName().endsWith(".json")) {
                     outputFileInputStream = translateVocaberryJson(content);
-                } else if (document.getFileName().toLowerCase().contains("strings.xml")) {
-                    outputFileInputStream = translateAndroidStrings(content);
-                }
-                if (outputFileInputStream != null) {
                     SendDocument sendDocument = new SendDocument()
                             .setChatId(update.getMessage().getChatId())
                             .setCaption(document.getFileName() + " with translations")
                             .setNewDocument(document.getFileName(), outputFileInputStream);
                     sendNoException(sendDocument);
-                } else {
+
+                } else if (document.getFileName().toLowerCase().contains("strings.xml")) {
+                    outputFileInputStream = translateAndroidStrings(content);
+                    SendDocument sendDocument = new SendDocument()
+                            .setChatId(update.getMessage().getChatId())
+                            .setCaption("Translations")
+                            .setNewDocument("android-strings.zip", outputFileInputStream);
+                    sendNoException(sendDocument);
+                }
+                if (outputFileInputStream == null) {
                     SendMessage message = new SendMessage()
                             .setChatId(update.getMessage().getChatId())
                             .setText(document.getFileName() + " is not supported");
