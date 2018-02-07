@@ -40,7 +40,7 @@ public class TranslateFileResourcesBot extends TelegramLongPollingBot {
                 InputStream outputFileInputStream = null;
                 if (document.getFileName().endsWith(".json")) {
                     outputFileInputStream = translateVocaberryJson(content);
-                } else if (document.getFileName().toLowerCase().contains("string.xml")) {
+                } else if (document.getFileName().toLowerCase().contains("strings.xml")) {
                     outputFileInputStream = translateAndroidStrings(content);
                 }
                 if (outputFileInputStream != null) {
